@@ -4,7 +4,7 @@ varying mediump vec2 var_texcoord0;
 uniform lowp sampler2D texture_sampler;
 
 float rand(vec2 n) {
-	//This is just a compounded expression to simulate a random number based on a seed given as n
+	// some expression that simulates a random number given some input (I didn't write this bit)
 	return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
 }
 
