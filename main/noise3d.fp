@@ -62,12 +62,14 @@ float noise(vec3 n) {
 
 void main()
 {
-	float amplitude = 4;
+	float amplitude = 2;
 	float intensity = 0.0;
 	for(int i =0; i< 4; i++) {
-		intensity += noise(vec3(var_texcoord0.xy, time.x) * amplitude);
+		intensity += noise(vec3(var_texcoord0.xy, time.x/20) * amplitude);
 		amplitude *= 1.5;
 	}
+
+	intensity*=3;
 	
 	gl_FragColor = vec4(intensity, intensity, intensity, 1.0);
 }
