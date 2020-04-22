@@ -1,7 +1,5 @@
 function init(self)
 	self.time = 0.0
-	self.last_update = 0
-	self.ticks = 0.0
 	-- Add initialization code here
 	-- Remove this function if not needed
 end
@@ -13,14 +11,8 @@ end
 
 function update(self, dt)
 
-	if self.last_update >  0.5 then
-		self.ticks = self.ticks + 1.0
-		-- go.set("#sprite", "ticks", vmath.vector4(self.ticks, 0, 0, 0))
-		self.last_update = 0
-	else
-		self.last_update = self.last_update + dt
-	end
-	
+	self.time = self.time + dt
+	go.set("#sprite", "time", vmath.vector4(self.time, 0, 0, 0))
 end
 
 function on_message(self, message_id, message, sender)

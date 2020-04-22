@@ -3,14 +3,16 @@ varying mediump vec2 var_texcoord0;
 
 uniform lowp sampler2D texture_sampler;
 
+uniform lowp vec4 time;
+
 float rand(vec2 n) {
 	// some expression that simulates a random number given some input (I didn't write this bit)
 	return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
 }
 
-float noise(vec2 n) {
+float noise(vec2 n, float time) {
 	vec2 gtl = floor(n);
-	vec2 pos = smoothstep(vec2(0), vec2(1),fract(n));
+	vec2 pos = smoothstep(vec2(0), vec2(1), fract(n));
 
 	vec2 tl_grad = vec2(rand(gtl), rand(gtl));
 	vec2 tr_grad = vec2(rand(gtl + vec2(1, 0)), rand(gtl + vec2(1, 0)));
@@ -32,7 +34,7 @@ void main()
 	float intensity = 0.0;
 	float amplitude = 4.0;
 	for(int i =0; i< 4; i++) {
-		intensity += noise(var_texcoord0 * amplitude);
+		intensity += noise(var_texcoord0 * amplitude, time);
 		amplitude *= 1.5;
 	}
 	
