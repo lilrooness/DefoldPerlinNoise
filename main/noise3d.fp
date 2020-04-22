@@ -10,9 +10,9 @@ float rand(vec2 n) {
 	return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
 }
 
-float noise(vec2 n, float time_value) {
-	vec3 gtl = floor(vec3(n.xy, time_value));
-	vec3 pos = smoothstep(vec3(0), vec3(1), fract(vec3(n.xy, time_value)));
+float noise(vec3 n) {
+	vec3 gtl = floor(n);
+	vec3 pos = smoothstep(vec3(0), vec3(1), fract(n));
 
 	vec3 tlb_grad = vec3(rand(gtl), rand(gtl), rand(gtl));
 	vec3 trb_grad = vec3(rand(gtl + vec3(1,0,0)), rand(gtl + vec3(1,0,0)), rand(gtl + vec3(1,0,0)));
@@ -46,7 +46,7 @@ void main()
 	float intensity = 0.0;
 	float amplitude = 4.0;
 	for(int i =0; i< 4; i++) {
-		intensity += noise(var_texcoord0 * amplitude, time.x);
+		intensity += noise(vec3(var_texcoord0.xy, time.x) * amplitude);
 		amplitude *= 1.5;
 	}
 	
