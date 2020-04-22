@@ -2,5 +2,5 @@
 
 [The fragment shader](main/test.fp)
 
-![perlin noise program](example.png)
+![perlin noise program](smokey.gif)
 
