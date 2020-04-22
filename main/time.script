@@ -12,6 +12,7 @@ end
 function update(self, dt)
 
 	self.time = self.time + dt
+	print(self.time)
 	go.set("#sprite", "time", vmath.vector4(self.time, 0, 0, 0))
 end
 
